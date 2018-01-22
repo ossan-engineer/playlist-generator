@@ -7,14 +7,14 @@ class Track extends Component {
       <div className='Track'>
         <div className='Track-information'>
           <h3>
-            // track name will go here
+            {this.props.name}
           </h3>
           <p>
-            // track artist will go here | track album will go here
+            {this.props.artist}
           </p>
         </div>
         <a className='Track-action'>
-          // + or - will go here
+          {this.props.album}
         </a>
       </div>
     );

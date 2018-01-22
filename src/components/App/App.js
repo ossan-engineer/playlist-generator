@@ -5,6 +5,26 @@ import Playlist from '../Playlist/Playlist';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchResults: [
+        {
+          id: '001',
+          name: 'kimigayo',
+          artist: 'taro',
+          album: 'Japanese Songs',
+        },
+        {
+          id: '002',
+          name: 'sakura',
+          artist: 'hanako',
+          album: 'Japanese Flowers',
+        },
+      ],
+    };
+  }
+
   render() {
     return (
       <div>
@@ -12,7 +32,7 @@ class App extends Component {
         <div className='App'>
           <SearchBar />
           <div className='App-playlist'>
-            <SearchResults />
+            <SearchResults searchResults={this.state.searchResults} />
             <Playlist />
           </div>
         </div>
