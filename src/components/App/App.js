@@ -74,13 +74,14 @@ class App extends Component {
   }
 
   savePlaylist = () => {
-    const trackURIs = [];
+    const trackURIs = this.state.playlistTracks;
 
-    console.log('SAVED');
+    console.log(trackURIs);
+    console.log(this.state.playlistName);
   }
 
   search = (term) => {
-    console.log('SEARCH');
+    console.log(term);
   }
 
   render() {
