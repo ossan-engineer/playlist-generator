@@ -67,6 +67,12 @@ class App extends Component {
     console.log('REMOVE');
   }
 
+  updatePlaylistName = (name) => {
+    this.setState({
+      playlistName: name,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -82,6 +88,7 @@ class App extends Component {
               playlistName={this.state.playlistName}
               playlistTracks={this.state.playlistTracks}
               onRemove={this.removeTrack}
+              onNameChange={this.updatePlaylistName}
             />
           </div>
         </div>

@@ -3,10 +3,17 @@ import TrackList from '../TrackList/TrackList';
 import './Playlist.css';
 
 class Playlist extends Component {
+  handleNameChange = (event) => {
+    this.props.onNameChange(event.target.value);
+  }
+
   render() {
     return (
       <div className='Playlist'>
-        <input defaultValue={this.props.playlistName} />
+        <input
+          defaultValue={this.props.playlistName}
+          onChange={this.handleNameChange}
+        />
         <TrackList
           tracks={this.props.playlistTracks}
           onRemove={this.props.onRemove}
