@@ -14,6 +14,7 @@ class TrackList extends Component {
               name={track.name}
               artist={track.artist}
               album={track.album}
+              onAdd={() => this.props.onAdd(track)}
             />
           );
         })}

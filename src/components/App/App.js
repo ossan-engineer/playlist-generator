@@ -21,6 +21,12 @@ class App extends Component {
           artist: 'hanako',
           album: 'Japanese Flowers',
         },
+        {
+          id: '004',
+          name: 'katana',
+          artist: 'musashi',
+          album: 'Japanese Legends',
+        },
       ],
       playlistName: 'Default',
       playlistTracks: [
@@ -34,6 +40,23 @@ class App extends Component {
     };
   }
 
+  addTrack = (track) => {
+    const newPlaylistTracks = this.state.playlistTracks.slice();
+    const isRegistered = this.state.playlistTracks.some((playlist) => {
+      return track.id === playlist.id;
+    });
+
+    if (isRegistered) {
+      console.log('ERROR');
+      return;
+    }
+
+    newPlaylistTracks.push(track);
+    this.setState({
+      playlistTracks: newPlaylistTracks,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -41,7 +64,10 @@ class App extends Component {
         <div className='App'>
           <SearchBar />
           <div className='App-playlist'>
-            <SearchResults searchResults={this.state.searchResults} />
+            <SearchResults
+              searchResults={this.state.searchResults}
+              onAdd={this.addTrack}
+            />
             <Playlist
               playlistName={this.state.playlistName}
               playlistTracks={this.state.playlistTracks}
