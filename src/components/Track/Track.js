@@ -2,14 +2,6 @@ import React, { Component } from 'react';
 import './Track.css';
 
 class Track extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  // removeTrack = id => {
-  //   this.props.onRemove(id);
-  // }
-
   renderAction = isRemoval => isRemoval
     ? (
       <a
