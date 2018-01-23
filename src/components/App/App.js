@@ -79,12 +79,16 @@ class App extends Component {
     console.log('SAVED');
   }
 
+  search = (term) => {
+    console.log('SEARCH');
+  }
+
   render() {
     return (
       <div>
         <h1>Playlist<span className='highlight'>G</span>enerator</h1>
         <div className='App'>
-          <SearchBar />
+          <SearchBar onSearch={this.search} />
           <div className='App-playlist'>
             <SearchResults
               searchResults={this.state.searchResults}
