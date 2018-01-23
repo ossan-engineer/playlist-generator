@@ -15,6 +15,8 @@ class TrackList extends Component {
               artist={track.artist}
               album={track.album}
               onAdd={() => this.props.onAdd(track)}
+              onRemove={() => this.props.onRemove(track)}
+              isRemoval={this.props.isRemoval}
             />
           );
         })}
