@@ -6,19 +6,19 @@ class TrackList extends Component {
   render() {
     return (
       <div className='TrackList'>
-        {this.props.tracks.map((track) => {
+        {this.props.tracks ? this.props.tracks.map((track) => {
           return (
             <Track
               key={track.id}
               name={track.name}
-              artist={track.artist}
-              album={track.album}
+              artist={track.artists[0].name}
+              album={track.album.name}
               onAdd={() => this.props.onAdd(track)}
               onRemove={() => this.props.onRemove(track)}
               isRemoval={this.props.isRemoval}
             />
           );
-        })}
+        }) : null}
       </div>
     );
   }

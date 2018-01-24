@@ -9,35 +9,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [
-        {
-          id: '001',
-          name: 'kimigayo',
-          artist: 'taro',
-          album: 'Japanese Songs',
-        },
-        {
-          id: '002',
-          name: 'sakura',
-          artist: 'hanako',
-          album: 'Japanese Flowers',
-        },
-        {
-          id: '004',
-          name: 'katana',
-          artist: 'musashi',
-          album: 'Japanese Legends',
-        },
-      ],
-      playlistName: 'Default',
-      playlistTracks: [
-        {
-          id: '002',
-          name: 'sakura',
-          artist: 'hanako',
-          album: 'Japanese Flowers',
-        },
-      ],
+      searchResults: [],
+      playlistTracks: [],
     };
   }
 
@@ -81,8 +54,16 @@ class App extends Component {
     console.log(this.state.playlistName);
   }
 
+  updateSearchResults = (searchResults) => {
+    console.log(searchResults)
+    this.setState({
+      searchResults,
+    });
+  }
+
   search = (term) => {
     console.log(term);
+    Spotify.search(term, this.updateSearchResults);
   }
 
   render() {
