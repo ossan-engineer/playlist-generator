@@ -8,7 +8,7 @@ const requestParams = {
   clientId: '65e1281ba669443385b8bad485a9e286',
   responseType: 'token',
   scope: 'playlist-modify-public',
-  redirectUri: 'http://localhost:3000',
+  redirectUri: window.location.href,
 };
 const authUrl = `https://accounts.spotify.com/authorize?client_id=${requestParams.clientId}&response_type=${requestParams.responseType}&scope=${requestParams.scope}&redirect_uri=${requestParams.redirectUri}`;
 const baseUrl = 'https://api.spotify.com';
