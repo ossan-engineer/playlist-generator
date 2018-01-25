@@ -12,6 +12,11 @@ const requestParams = {
 };
 const authUrl = `https://accounts.spotify.com/authorize?client_id=${requestParams.clientId}&response_type=${requestParams.responseType}&scope=${requestParams.scope}&redirect_uri=${requestParams.redirectUri}`;
 const baseUrl = 'https://api.spotify.com';
+const headers = {
+  Authorization: `Bearer ${accessToken}`,
+  'Content-Type': 'application/json',
+};
+let userId;
 
 if (accessToken && expiresIn) {
   setTimeout(() => {
@@ -34,33 +39,8 @@ const Spotify = {
     }
   },
   search: (term, callback = null) => {
-    // fetch(`${baseUrl}/v1/search?type=track&q=${term}`, {
-    //   headers: {
-    //     Authorization: `Bearer ${accessToken}`,
-    //   },
-    // })
-    //   .then((response) => {
-    //     if (response.ok) {
-    //       console.log(response);
-    //       return response.json();
-    //     } else {
-    //       console.log('Network response was not ok.');
-    //     }
-    //   })
-    //   .then((jsonResponse) => {
-    //     console.log(jsonResponse.tracks);
-    //
-    //     if (callback) {
-    //       callback(jsonResponse);
-    //     }
-    //     return jsonResponse.tracks;
-    //   })
-    //   .catch(error => console.log(error.message));
-
     axios.get(`${baseUrl}/v1/search?type=track&q=${term}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
+      headers,
     })
       .then((response) => {
         console.log(response);
@@ -71,11 +51,39 @@ const Spotify = {
       })
       .catch((error) => {
         console.log(error);
-      })
+      });
   },
-  // savePlaylist: () => {
-  //
-  // }
+  savePlaylist: (playlistName, uris) => {
+    if (!(playlistName && uris)) {
+      return;
+    }
+
+    return axios.get(`${baseUrl}/v1/me`, {
+      headers,
+    })
+      .then((response) => {
+        console.log(response);
+        userId = response.data.id;
+        // return response;
+      })
+      .then((response) => {
+        return axios.post(`${baseUrl}/v1/users/${userId}/playlists`, {
+          name: playlistName,
+        }, {
+          headers,
+        });
+      })
+      .then((response) => {
+        console.log(response.data.id);
+        const playlistId = response.data.id;
+
+        return axios.post(`${baseUrl}/v1/users/${userId}/playlists/${playlistId}/tracks`, {
+          uris,
+        }, {
+          headers,
+        });
+      });
+  },
 }
 
 export default Spotify;
