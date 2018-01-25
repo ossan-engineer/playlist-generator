@@ -4,7 +4,7 @@ This is a playlist generator application using React and Spotify API.
 
 ## Demo
 
-https://ossan-engineer.github.io/restaurant-search/
+https://ossan-engineer.github.io/playlist-generator/
 
 Spotify account is needed. After authentication you will be redirected to `https://ossan-engineer.github.io` .
 
