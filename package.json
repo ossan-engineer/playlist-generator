@@ -1,6 +1,7 @@
 {
   "name": "playlist-generator",
   "version": "0.1.0",
+  "homepage": "https://ossan-engineer.github.io/playlist-generator",
   "private": true,
   "devDependencies": {
     "eslint": "^4.15.0",
@@ -21,6 +22,7 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "gh-pages": "^1.1.0",
     "query-string": "^5.0.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
@@ -28,6 +30,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "yarn build && gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "eslint .",
